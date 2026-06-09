@@ -55,18 +55,30 @@ public class Acompanhamento {
   }
 
   public void setAtividadesIA(int atividadesIA) {
+    if (atividadesIA > atividadesEntregues) {
+      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+    }
     this.atividadesIA = atividadesIA;
   }
 
   public void setAtividadesExplicadas(int atividadesExplicadas) {
+    if (atividadesExplicadas > atividadesEntregues) {
+      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+    }
     this.atividadesExplicadas = atividadesExplicadas;
   }
 
   public void setAtividadesSemAjuda(int atividadesSemAjuda) {
+    if (atividadesSemAjuda > atividadesEntregues) {
+      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+    }
     this.atividadesSemAjuda = atividadesSemAjuda;
   }
 
   public void setAtividadesNaoEstudadas(int atividadesNaoEstudadas) {
+    if (atividadesNaoEstudadas > atividadesEntregues) {
+      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+    }
     this.atividadesNaoEstudadas = atividadesNaoEstudadas;
   }
 
