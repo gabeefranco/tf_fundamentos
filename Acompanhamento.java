@@ -33,7 +33,7 @@ public class Acompanhamento {
 
   public String getRiscoLabel() {
     this.calcularRisco();
-    if (riscoPedagogico < 3.3) {
+    if (riscoPedagogico <= 3.3) {
       return "BAIXO";
     }
     if (riscoPedagogico > 3.3 && riscoPedagogico < 6.6) {
