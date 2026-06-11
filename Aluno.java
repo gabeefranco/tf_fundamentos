@@ -6,7 +6,7 @@ public class Aluno {
     private int ano;
     private boolean bolsista;
 
-    public Aluno(int nome, int idade, String localNascimento, String curso, String matricula, int semestre, int ano, boolean bolsista){
+    public Aluno(String nome, int idade, String localNascimento, String curso, String matricula, int semestre, int ano, boolean bolsista){
         this.pessoa = new Pessoa(nome, idade, localNascimento);
         this.curso = curso;
         this.matricula = matricula;
@@ -15,7 +15,7 @@ public class Aluno {
         this.bolsista = bolsista;
     }
 
-    public int getNome(){
+    public String getNome(){
         return this.pessoa.getNome();
     }
 
