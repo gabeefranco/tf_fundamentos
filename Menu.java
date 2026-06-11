@@ -7,12 +7,12 @@ public class Menu {
 
   private static Dados dados;
   private static Gerenciador gerenciador;
+  private static Scanner input = new Scanner(System.in);
 
   public static void main(String[] args) {
     dados = new Dados();
     gerenciador = new Gerenciador(dados);
 
-    Scanner input = new Scanner(System.in);
     while (true) {
       System.out.println(
           "Escolha uma opcao:" + "\n" +
@@ -37,13 +37,8 @@ public class Menu {
   }
 
   public static void prompt(int option) {
+    
     switch (option) {
-
-      // passar parametros
-
-      // String nome,int idade,String local, String curso, String matricula,int
-      // semestre,int ano ,bool bolsista, String projeto, String orientador
-
       case 1:
         gerenciador.cadastrarAluno(); // completar com o nome correto das gerenciadores
         break;
