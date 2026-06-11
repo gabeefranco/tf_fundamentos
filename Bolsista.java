@@ -3,13 +3,13 @@ public class Bolsista{
     private String projeto;
     private String orientador;
 
-    public Bolsista(String nome, int idade, String localNascimento, String curso, String matricula, int semestre, int ano, boolean bolsista, String projeto, String orientador){
+    public Bolsista(int nome, int idade, String localNascimento, String curso, String matricula, int semestre, int ano, boolean bolsista, String projeto, String orientador){
         this.aluno = new Aluno(nome, idade, localNascimento, curso, matricula, semestre, ano, bolsista);
         this.projeto = projeto;
         this.orientador = orientador;
     }
 
-    public String getNome(){
+    public int getNome(){
         return this.aluno.getNome();
     }
 

@@ -1,15 +1,15 @@
 public class Pessoa{
-    private String nome;
+    private int nome;
     private int idade;
     private String localNascimento;
 
-    public Pessoa(String nome, int idade, String localNascimento){
+    public Pessoa(int nome, int idade, String localNascimento){
         this.nome = nome;
         this.idade = idade;
         this.localNascimento = localNascimento;
     }
 
-    public String getNome(){
+    public int getNome(){
         return this.nome;
     }
 
