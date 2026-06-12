@@ -1,10 +1,14 @@
 public class Dados {
     private Aluno[] alunos;
     private String chamada;
+    private Acompanhamento[] acompanhamentos;
+    private Bolsista[] bolsistas;
 
     public Dados(){
         alunos = new Aluno[]{};
         chamada = "";
+        acompanhamentos = new Acompanhamento[]{};
+        bolsistas = new Bolsista[]{};
     }
 
     public void appendAluno(Aluno aluno){
@@ -20,12 +24,35 @@ public class Dados {
         this.alunos = novoArray;
     }
 
+    public void appendAcompanhamento(Acompanhamento acomp){
+        int size = this.acompanhamentos.length;
+
+        Acompanhamento[] novoArray = new Acompanhamento[size + 1];
+
+        for (int i = 0; i < size; i++){
+            novoArray[i] = this.acompanhamentos[i];
+        }
+
+        novoArray[size] = acomp;
+        this.acompanhamentos = novoArray;
+    }
+
+    public void appendBolsista(){
+
+
+        
+    }
+
     private int findAlunoIndex(String nome){
         for (int i = 0; i < alunos.length; i++){
             if (nome.equals(alunos[i].getNome()))
                 return i;
         }
         return -1;
+    }
+
+    public Aluno findAluno(String nome){
+        return alunos[findAlunoIndex(nome)];
     }
 
     public void listAlunos(){
@@ -62,22 +89,26 @@ public class Dados {
     }
 
     public int totalVowels(){
-        char[] vowels = new char[]{'a', 'e', 'i', 'o', 'u'};
+        
         int sum = 0;
 
-        for (int i = 0; i < vowels.length; i++){
-            for (int k = 0; k < alunos.length; k++){
+        for (int k = 0; k < alunos.length; k++){
+            String nome = alunos[k].getNome();
 
-                String nome = alunos[k].getNome();
-
-                for (int j = 0; j < nome.length(); j++){
-                    if (nome.charAt(j) == vowels[i]){
-                        sum++;}
-                }
+            for (int j = 0; j < nome.length(); j++){
+                if (isVowel(nome.charAt(j))){
+                    sum++;}
             }
         }
+        
 
         return sum;
+    }
+
+    private boolean isVowel(char a){
+    
+        return (a == 'a') || (a == 'e') || (a == 'i') || (a == 'o') || (a == 'u');
+    
     }
 
     public void makeChamada(){
