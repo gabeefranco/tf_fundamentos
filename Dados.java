@@ -37,7 +37,7 @@ public class Dados {
         this.acompanhamentos = novoArray;
     }
 
-    public void appendBolsista(){
+    public void appendBolsista(Bolsista bolsista){
 
 
         
@@ -55,6 +55,16 @@ public class Dados {
         return alunos[findAlunoIndex(nome)];
     }
 
+    public Acompanhamento findAcompanhamento(String nome){
+        for (int i = 0; i < acompanhamentos.length; i++){
+            if (acompanhamentos[i].getAluno().getNome().equals(nome)) {
+                return acompanhamentos[i];
+            }
+        }
+
+        return null;
+    }
+
     public void listAlunos(){
         for (int i = 0; i < alunos.length; i++){
             System.out.println(alunos[i].getNome());
@@ -66,6 +76,32 @@ public class Dados {
             if (alunos[i].getBolsista())
                 System.out.println(alunos[i].getNome());
         }
+    }
+
+    public void riskReport(){
+
+        String relatorio = "";
+
+        for (int i = 0; i < acompanhamentos.length; i++){
+            relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome() + ": Risco ");
+            relatorio = relatorio.concat(acompanhamentos[i].getRiscoLabel() + "\n");
+        }
+
+        System.out.println(relatorio);
+
+    }
+
+    public void riskReportHigh(){
+
+        String relatorio = "";
+
+        for (int i = 0; i < acompanhamentos.length; i++){
+            if (acompanhamentos[i].getRiscoLabel().equals("ALTO")){
+                relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome() + ": Risco ALTO\n");
+            }
+        }
+
+        System.out.println(relatorio);
     }
 
     public void maiorNome(){
@@ -114,13 +150,24 @@ public class Dados {
     public void makeChamada(){
         this.chamada = "";
         for (int i = 0; i < alunos.length; i++){
-            this.chamada.concat(alunos[i].getMatricula() + " / ");
-            this.chamada.concat(alunos[i].getNome() + " / ");
-            this.chamada.concat(alunos[i].getCurso() + "/n");
+            this.chamada = this.chamada.concat(alunos[i].getMatricula() + " / ");
+            this.chamada = this.chamada.concat(alunos[i].getNome() + " / ");
+            this.chamada = this.chamada.concat(alunos[i].getCurso() + "\n");
         }
     }
 
     public void printChamada(){
         System.out.println(chamada);
+    }
+
+    public double coursePercent(String curso){
+        double num = 0;
+
+        for (int i = 0; i < alunos.length; i++){
+            if (alunos[i].getCurso().equals(curso))
+                num++;
+        }
+
+        return (num / alunos.length) * 100;
     }
 }

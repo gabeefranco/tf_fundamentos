@@ -1,5 +1,4 @@
-// TODO: implementar os métodos na gerenciadore Gerenciador
-// TODO: implementar os métodos na gerenciadore Dados
+// TODO: atualizar README.md
 
 import java.util.Scanner;
 

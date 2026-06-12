@@ -28,6 +28,7 @@ public class Acompanhamento {
   }
 
   public double getRiscoPedagogico() {
+    this.calcularRisco();
     return riscoPedagogico;
   }
 

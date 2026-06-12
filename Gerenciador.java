@@ -1,4 +1,4 @@
-// TODO: validação registrarAcompanhamentos()
+// TODO: validação nos metodos com entrada
 
 import java.util.Scanner;
 
@@ -42,7 +42,7 @@ public class Gerenciador {
   public void cadastrarBolsista() {
 
     System.out.println("Insira o nome do aluno a quem você deseja cadastrar uma bolsa:");
-    Aluno aluno = this.dados.findAluno(input.nextLine);
+    Aluno aluno = this.dados.findAluno(input.nextLine());
 
     System.out.println("Insira o nome do projeto:");
     String projeto = input.nextLine();
@@ -59,7 +59,7 @@ public class Gerenciador {
   public void registrarAcompanhamento() {
     System.out.println("Insira o nome do Aluno que você deseja registrar o acompanhamento:");
     String nome = input.nextLine();
-    Aluno aluno = this.dados.findAluno();
+    Aluno aluno = this.dados.findAluno(nome);
 
     Acompanhamento acomp = new Acompanhamento(aluno, 0, 0, 0, 0, 0);
 
@@ -81,7 +81,7 @@ public class Gerenciador {
 
     System.out.println("Insira a quanntidade de atividades entregues que utilizarão estruturas não estudadas:");
     int naoestudadas = input.nextInt();
-    acomp.setAtividadesNaoEstudadas();
+    acomp.setAtividadesNaoEstudadas(naoestudadas);
 
     this.dados.appendAcompanhamento(acomp);
     
@@ -105,6 +105,11 @@ public class Gerenciador {
 
   public void percentualAlunos() {
 
+    System.out.println("Insira um curso:");
+    String curso = input.nextLine();
+
+    System.out.print("O percentual de alunos matriculados nesse curso é de: " + this.dados.coursePercent(curso) + "%\n");
+
   }
 
   public void mediaIdadeAlunos() {
@@ -120,14 +125,22 @@ public class Gerenciador {
   }
 
   public void calcularRisco() {
+
+    System.out.println("Insira o nome de um aluno:");
+    Acompanhamento acomp = this.dados.findAcompanhamento(input.nextLine());
+
+    System.out.println("O risco pedagógico deste aluno é " + acomp.getRiscoLabel());
+
   }
 
   public void relatorioRisco() {
 
+    this.dados.riskReport();
+
   }
 
   public void altoRisco() {
-
+    this.dados.riskReportHigh();
   }
 
   public void inovacao() {
