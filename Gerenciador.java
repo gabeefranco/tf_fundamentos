@@ -1,3 +1,5 @@
+// TODO: validação registrarAcompanhamentos()
+
 import java.util.Scanner;
 
 public class Gerenciador {
@@ -39,9 +41,50 @@ public class Gerenciador {
 
   public void cadastrarBolsista() {
 
+    System.out.println("Insira o nome do aluno a quem você deseja cadastrar uma bolsa:");
+    Aluno aluno = this.dados.findAluno(input.nextLine);
+
+    System.out.println("Insira o nome do projeto:");
+    String projeto = input.nextLine();
+
+    System.out.println("Insira o nome do orientador:");
+    String orientador = input.nextLine();
+
+    Bolsista bolsista = new Bolsista(aluno, projeto, orientador);
+    aluno.setBolsista(true);
+    this.dados.appendBolsista(bolsista);
+
   }
 
   public void registrarAcompanhamento() {
+    System.out.println("Insira o nome do Aluno que você deseja registrar o acompanhamento:");
+    String nome = input.nextLine();
+    Aluno aluno = this.dados.findAluno();
+
+    Acompanhamento acomp = new Acompanhamento(aluno, 0, 0, 0, 0, 0);
+
+    System.out.println("Insira a quantidade de atividades entregues:");
+    int entregues = input.nextInt();
+    acomp.setAtividadesEntregues(entregues);
+
+    System.out.println("Insira a quantidade de atividades entregues nas quais foi declarado o uso de IA:");
+    int ia = input.nextInt();
+    acomp.setAtividadesIA(ia);
+
+    System.out.println("Insira a quantidade de atividades entregues que o aluno soube explicar:");
+    int explicadas = input.nextInt();
+    acomp.setAtividadesExplicadas(explicadas);
+
+    System.out.println("Insira a quantidade de atividades entregues que foram feitas sem ajuda:");
+    int semajuda = input.nextInt();
+    acomp.setAtividadesSemAjuda(semajuda);
+
+    System.out.println("Insira a quanntidade de atividades entregues que utilizarão estruturas não estudadas:");
+    int naoestudadas = input.nextInt();
+    acomp.setAtividadesNaoEstudadas();
+
+    this.dados.appendAcompanhamento(acomp);
+    
   }
 
   public void listarAlunos() {
