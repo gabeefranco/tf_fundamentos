@@ -3,8 +3,8 @@ public class Bolsista{
     private String projeto;
     private String orientador;
 
-    public Bolsista(String nome, int idade, String localNascimento, String curso, String matricula, int semestre, int ano, boolean bolsista, String projeto, String orientador){
-        this.aluno = new Aluno(nome, idade, localNascimento, curso, matricula, semestre, ano, bolsista);
+    public Bolsista(Aluno aluno, String projeto, String orientador){
+        this.aluno = aluno;
         this.projeto = projeto;
         this.orientador = orientador;
     }
