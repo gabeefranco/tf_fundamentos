@@ -35,14 +35,27 @@ public class Gerenciador {
     System.out.println("Insira o ano do aluno:");
     ano = input.nextInt();
 
-    Aluno aluno = new Aluno(nome, idade, local, curso, matricula, semestre, ano, bolsista); // Adicionar opção de bolsista
+    Aluno aluno = new Aluno(nome, idade, local, curso, matricula, semestre, ano, false);
     this.dados.appendAluno(aluno);
+
+    System.out.println("O aluno é bolsista? (s/n)");
+    String resposta = input.nextLine().toLowerCase();
+    if (resposta.equals("s")){
+      cadastrarBolsista(true, aluno);
+    }
+
   }
 
-  public void cadastrarBolsista() {
+  public void cadastrarBolsista(boolean resposta, Aluno alunoparametro) {
 
-    System.out.println("Insira o nome do aluno a quem você deseja cadastrar uma bolsa:");
-    Aluno aluno = this.dados.findAluno(input.nextLine());
+    Aluno aluno;
+
+    if (resposta){
+      aluno = alunoparametro;
+      } else {
+        System.out.println("Insira o nome do aluno a quem você deseja cadastrar uma bolsa:");
+        aluno = this.dados.findAluno(input.nextLine());
+      }
 
     System.out.println("Insira o nome do projeto:");
     String projeto = input.nextLine();

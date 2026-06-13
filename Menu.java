@@ -42,7 +42,7 @@ public class Menu {
         gerenciador.cadastrarAluno(); // completar com o nome correto das gerenciadores
         break;
       case 2:
-        gerenciador.cadastrarBolsista();
+        gerenciador.cadastrarBolsista(false, null);
         break;
       case 3:
         gerenciador.registrarAcompanhamento();
