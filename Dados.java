@@ -40,7 +40,16 @@ public class Dados {
     }
 
     public void appendBolsista(Bolsista bolsista){
+        int size = this.bolsistas.length;
 
+        Bolsista[] novoArray = new Bolsista[size + 1];
+
+        for (int i = 0; i < size; i++){
+            novoArray[i] = this.bolsistas[i];
+        }
+
+        novoArray[size] = bolsista;
+        this.bolsistas = novoArray;
 
         
     }
