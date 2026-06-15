@@ -1,4 +1,4 @@
-public class Bolsista{
+public class Bolsista {
     private Aluno aluno;
     private String projeto;
     private String orientador;

@@ -1,4 +1,4 @@
-public class Pessoa{
+public class Pessoa {
     private String nome;
     private int idade;
     private String localNascimento;
@@ -20,5 +20,4 @@ public class Pessoa{
     public String getLocal(){
         return this.localNascimento;
     }
-
 }

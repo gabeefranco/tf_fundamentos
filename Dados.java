@@ -1,3 +1,5 @@
+// TODO: acentos no isVowel()
+
 public class Dados {
     private Aluno[] alunos;
     private String chamada;
@@ -143,7 +145,7 @@ public class Dados {
 
     private boolean isVowel(char a){
     
-        return (a == 'a') || (a == 'e') || (a == 'i') || (a == 'o') || (a == 'u');
+        return (a == 'a') || (a == 'e') || (a == 'i') || (a == 'o') || (a == 'u') || (a == 'A') || (a == 'E') || (a == 'I') || (a == 'O') || (a == 'U');
     
     }
 
