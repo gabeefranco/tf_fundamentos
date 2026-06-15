@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Gerenciador {
   private Dados dados;
   private static Scanner input = new Scanner(System.in);
+  
   String nome, local, curso, matricula, projeto, orientador;
   int idade, semestre, ano;
   boolean bolsista;
