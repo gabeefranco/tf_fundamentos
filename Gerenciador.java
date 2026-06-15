@@ -10,9 +10,29 @@ public class Gerenciador {
   }
 
   public void cadastrarAluno() {
+    System.out.println("Insira o nome do aluno:");
+    nome = input.nextLine();
+
+    System.out.println("Insira o local de nascimento do aluno:");
+    local = input.nextLine();
+
+    System.out.println("Insira o curso do aluno:");
+    curso = input.nextLine();
+
+    System.out.println("Insira a matricula do aluno:");
+    matricula = input.nextLine();
+
+    System.out.println("Insira a idade do aluno:");
+    idade = input.nextInt();
+    input.nextLine(); //buffer clear
+
+    System.out.println("Insira o semestre do aluno:");
+    semestre = input.nextInt();
+    input.nextLine(); //buffer clear
 
     System.out.println("Insira o ano do aluno:");
     ano = input.nextInt();
+    input.nextLine(); //buffer clear
 
     Aluno aluno = new Aluno(nome, idade, local, curso, matricula, semestre, ano, false);
     this.dados.appendAluno(aluno);
@@ -57,22 +77,27 @@ public class Gerenciador {
 
     System.out.println("Insira a quantidade de atividades entregues:");
     int entregues = input.nextInt();
+    input.nextLine(); //buffer clear
     acomp.setAtividadesEntregues(entregues);
 
     System.out.println("Insira a quantidade de atividades entregues nas quais foi declarado o uso de IA:");
     int ia = input.nextInt();
+    input.nextLine(); //buffer clear
     acomp.setAtividadesIA(ia);
 
     System.out.println("Insira a quantidade de atividades entregues que o aluno soube explicar:");
     int explicadas = input.nextInt();
+    input.nextLine(); //buffer clear
     acomp.setAtividadesExplicadas(explicadas);
 
     System.out.println("Insira a quantidade de atividades entregues que foram feitas sem ajuda:");
     int semajuda = input.nextInt();
+    input.nextLine(); //buffer clear
     acomp.setAtividadesSemAjuda(semajuda);
 
     System.out.println("Insira a quanntidade de atividades entregues que utilizarão estruturas não estudadas:");
     int naoestudadas = input.nextInt();
+    input.nextLine(); //buffer clear
     acomp.setAtividadesNaoEstudadas(naoestudadas);
 
     this.dados.appendAcompanhamento(acomp);

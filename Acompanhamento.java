@@ -82,5 +82,4 @@ public class Acompanhamento {
     }
     this.atividadesNaoEstudadas = atividadesNaoEstudadas;
   }
-
 }
