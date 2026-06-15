@@ -106,22 +106,23 @@ public class Gerenciador {
     acomp.setAtividadesNaoEstudadas(naoestudadas);
 
     this.dados.appendAcompanhamento(acomp);
-    
+
   }
 
   public void listarAlunos() {
-
+    this.dados.listAlunos();
   }
 
   public void listarBolsistas() {
+    this.dados.listBolsistas();
   }
 
-  public void maiorNome() {
-
+  public void maiorNome(){
+    this.dados.maiorNome();
   }
 
-  public void vogaisNomes() {
-
+  public void vogaisNomes(){
+    System.out.println("Numero total de vogais: " + this.dados.totalVowels());
   }
 
   public void percentualAlunos() {
@@ -134,14 +135,15 @@ public class Gerenciador {
   }
 
   public void mediaIdadeAlunos() {
+    System.out.println("Idade média dos alunos: " + this.dados.averageAge());
   }
 
   public void criarChamada() {
-
+    this.dados.makeChamada();
   }
 
   public void chamada() {
-
+    this.dados.printChamada();
   }
 
   public void calcularRisco() {
