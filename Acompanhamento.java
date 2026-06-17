@@ -35,12 +35,15 @@ public class Acompanhamento {
   public String getRiscoLabel() {
     this.calcularRisco();
     if (riscoPedagogico <= 3.3) {
-      return "BAIXO";
+      return "O risco pedagógico deste aluno é BAIXO";
     }
     if (riscoPedagogico > 3.3 && riscoPedagogico < 6.6) {
-      return "MODERADO";
+      return "O risco pedagógico deste aluno é MODERADO";
     }
-    return "ALTO";
+    if (riscoPedagogico >= 6.6) {
+      return "O risco pedagógico deste aluno é ALTO";
+    }
+    return Erro.E7;
   }
 
   public Aluno getAluno() {
@@ -55,31 +58,35 @@ public class Acompanhamento {
     this.atividadesEntregues = atividadesEntregues;
   }
 
-  public void setAtividadesIA(int atividadesIA) {
+  public boolean setAtividadesIA(int atividadesIA) {
     if (atividadesIA > atividadesEntregues) {
-      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+      return true;
     }
     this.atividadesIA = atividadesIA;
+    return false;
   }
 
-  public void setAtividadesExplicadas(int atividadesExplicadas) {
+  public boolean setAtividadesExplicadas(int atividadesExplicadas) {
     if (atividadesExplicadas > atividadesEntregues) {
-      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+      return true;
     }
     this.atividadesExplicadas = atividadesExplicadas;
+    return false;
   }
 
-  public void setAtividadesSemAjuda(int atividadesSemAjuda) {
+  public boolean setAtividadesSemAjuda(int atividadesSemAjuda) {
     if (atividadesSemAjuda > atividadesEntregues) {
-      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+      return true;
     }
     this.atividadesSemAjuda = atividadesSemAjuda;
+    return false;
   }
 
-  public void setAtividadesNaoEstudadas(int atividadesNaoEstudadas) {
+  public boolean setAtividadesNaoEstudadas(int atividadesNaoEstudadas) {
     if (atividadesNaoEstudadas > atividadesEntregues) {
-      System.out.println("AVISO: Você escolheu um número maior do que o total de atividades entregues.");
+      return true;
     }
     this.atividadesNaoEstudadas = atividadesNaoEstudadas;
+    return false;
   }
 }

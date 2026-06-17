@@ -13,7 +13,11 @@ public class Dados {
         bolsistas = new Bolsista[]{};
     }
 
-    public void appendAluno(Aluno aluno){
+    public String appendAluno(Aluno aluno){
+        if (checkDuplicate(aluno.getNome())){
+            return Erro.E3;
+        }
+
         int size = this.alunos.length;
 
         Aluno[] novoArray = new Aluno[size + 1];
@@ -24,9 +28,15 @@ public class Dados {
 
         novoArray[size] = aluno;
         this.alunos = novoArray;
+
+        return "Aluno cadastrado com sucesso.";
     }
 
-    public void appendAcompanhamento(Acompanhamento acomp){
+    public String appendAcompanhamento(Acompanhamento acomp){
+        if (checkDuplicate(acomp.getAluno().getNome())){
+            return Erro.E3;
+        }
+
         int size = this.acompanhamentos.length;
 
         Acompanhamento[] novoArray = new Acompanhamento[size + 1];
@@ -37,9 +47,15 @@ public class Dados {
 
         novoArray[size] = acomp;
         this.acompanhamentos = novoArray;
+
+        return "Acompanhamento cadastrado com sucesso.";
     }
 
-    public void appendBolsista(Bolsista bolsista){
+    public String appendBolsista(Bolsista bolsista){
+        if (checkDuplicate(bolsista.getNome())){
+            return Erro.E3;
+        }
+
         int size = this.bolsistas.length;
 
         Bolsista[] novoArray = new Bolsista[size + 1];
@@ -51,7 +67,19 @@ public class Dados {
         novoArray[size] = bolsista;
         this.bolsistas = novoArray;
 
+        return "Bolsista cadastrado com sucesso.";
+
         
+    }
+
+    private boolean checkDuplicate(String nome){
+        for (int i = 0; i < alunos.length; i++){
+            if (nome.equals(alunos[i].getNome())){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private int findAlunoIndex(String nome){
@@ -63,7 +91,13 @@ public class Dados {
     }
 
     public Aluno findAluno(String nome){
-        return alunos[findAlunoIndex(nome)];
+        int index = findAlunoIndex(nome);
+
+        if (index == -1){
+            return null;
+        }
+
+        return alunos[index];
     }
 
     public Acompanhamento findAcompanhamento(String nome){
@@ -76,20 +110,33 @@ public class Dados {
         return null;
     }
 
-    public void listAlunos(){
+    public String listAlunos(){
+        if (alunos.length == 0)
+            return Erro.E5;
+        
+        String lista = "";
         for (int i = 0; i < alunos.length; i++){
-            System.out.println(alunos[i].getNome());
+            lista = lista.concat(alunos[i].getNome() + "\n");
         }
+
+        return lista;
     }
 
-    public void listBolsistas(){
-        for (int i = 0; i < alunos.length; i++){
-            if (alunos[i].getBolsista())
-                System.out.println(alunos[i].getNome());
+    public String listBolsistas(){
+        if (bolsistas.length == 0)
+            return Erro.E5;
+
+        String lista = "";
+        for (int i = 0; i < bolsistas.length; i++){
+            lista = lista.concat(bolsistas[i].getNome());
         }
+
+        return lista;
     }
 
-    public void riskReport(){
+    public String riskReport(){
+        if (acompanhamentos.length == 0)
+            return Erro.E8;
 
         String relatorio = "";
 
@@ -98,11 +145,13 @@ public class Dados {
             relatorio = relatorio.concat(acompanhamentos[i].getRiscoLabel() + "\n");
         }
 
-        System.out.println(relatorio);
+        return relatorio;
 
     }
 
-    public void riskReportHigh(){
+    public String riskReportHigh(){
+        if (acompanhamentos.length == 0)
+            return Erro.E8;
 
         String relatorio = "";
 
@@ -112,19 +161,28 @@ public class Dados {
             }
         }
 
-        System.out.println(relatorio);
+        if (relatorio.length() == 0)
+            return Erro.E9;
+
+        return relatorio;
     }
 
-    public void maiorNome(){
+    public String maiorNome(){
+        if (alunos.length == 0)
+            return Erro.E5;
+
         int k = 0;
         for (int i = 1; i < alunos.length; i++){
             if (alunos[i].getNome().length() > alunos[k].getNome().length())
                 k = i;
         }
-        System.out.println(alunos[k].getNome());
+        return alunos[k].getNome();
     }
 
-    public double averageAge(){
+    public String averageAge(){
+        if (alunos.length == 0)
+            return Erro.E5;
+
         double sum = 0;
 
         for (int i = 0; i < alunos.length; i++){
@@ -132,10 +190,12 @@ public class Dados {
         }
 
         sum = sum / alunos.length;
-        return sum;
+        return "Idade média dos alunos: " + sum;
     }
 
-    public int totalVowels(){
+    public String totalVowels(){
+        if (alunos.length == 0)
+            return Erro.E5;
         
         int sum = 0;
 
@@ -149,7 +209,7 @@ public class Dados {
         }
         
 
-        return sum;
+        return "Numero total de vogais:" + sum;
     }
 
     private boolean isVowel(char a){
@@ -160,15 +220,23 @@ public class Dados {
 
     public void makeChamada(){
         this.chamada = "";
-        for (int i = 0; i < alunos.length; i++){
-            this.chamada = this.chamada.concat(alunos[i].getMatricula() + " / ");
-            this.chamada = this.chamada.concat(alunos[i].getNome() + " / ");
-            this.chamada = this.chamada.concat(alunos[i].getCurso() + "\n");
+
+        if (alunos.length == 0){
+            this.chamada = Erro.E5;
+        } else {
+            for (int i = 0; i < alunos.length; i++){
+                this.chamada = this.chamada.concat(alunos[i].getMatricula() + " / ");
+                this.chamada = this.chamada.concat(alunos[i].getNome() + " / ");
+                this.chamada = this.chamada.concat(alunos[i].getCurso() + "\n");
+            }
         }
     }
 
-    public void printChamada(){
-        System.out.println(chamada);
+    public String printChamada(){
+        if (chamada.length() == 0)
+            return Erro.E6;
+
+        return chamada;
     }
 
     public double coursePercent(String curso){
