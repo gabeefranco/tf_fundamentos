@@ -12,7 +12,7 @@ public class Menu {
     gerenciador = new Gerenciador(dados);
 
     Scanner input = new Scanner(System.in);
-    String result = null;
+    String result = "";
     while (true) {
       System.out.println(
           "\fEscolha uma opcao:" + "\n" +
