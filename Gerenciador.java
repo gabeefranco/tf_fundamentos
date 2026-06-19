@@ -6,8 +6,8 @@ public class Gerenciador {
   private Dados dados;
   private static Scanner input = new Scanner(System.in);
   
-  String nome, local, curso, matricula, projeto, orientador = "";
-  int idade, semestre, ano = 0;
+  String nome = "", local = "", curso = "", matricula = "", projeto = "", orientador = "";
+  int idade = 0, semestre = 0, ano = 0;
   boolean bolsista = false;
 
   public Gerenciador(Dados dados) {
