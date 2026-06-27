@@ -3,14 +3,18 @@
 ---
 
 TITULO DO PROJETO: TF
+
 PROPOSITO DO PROJETO: A partir da escolha do usuario, o programa executa o metodo respectivo da escolha, com o projeto sendo um conjunto de metodos que(CONTINUAR)
+
 COMO COMECAR O PROJETO: Inicialize o projeto clicando com o botao direito na classe Menu e selecionando o metodo main.
+
 AUTORES: Caio Persch Espindola (26102478), Gabriel Franco (26102988), Arthur Dietrich de Morais (26106328) 
 
 ---
 OK--
 INSTRUCOES PARA USUARIO:
     Esscolha uma opcao do menu digitando o numero correspondente:
+	
          1 - Cadastrar um aluno
          2 - Cadastrar um bolsista
          3 - Registrar dados de acompanhamento
