@@ -33,8 +33,12 @@ public class Dados {
     }
 
     public String appendAcompanhamento(Acompanhamento acomp){
-        if (checkDuplicate(acomp.getAluno().getNome())){
-            return Erro.E3;
+
+        int index = findAcompanhamentoIndex(acomp.getAluno().getNome());
+
+        if (index != -1){
+            acompanhamentos[index] = acomp;
+            return "Acompanhamento atualizado com sucesso.";
         }
 
         int size = this.acompanhamentos.length;
@@ -51,10 +55,15 @@ public class Dados {
         return "Acompanhamento cadastrado com sucesso.";
     }
 
-    public String appendBolsista(Bolsista bolsista){
-        if (checkDuplicate(bolsista.getNome())){
-            return Erro.E3;
+    public int findAcompanhamentoIndex(String nome){
+        for (int i = 0; i < acompanhamentos.length; i++){
+            if (nome.equals(acompanhamentos[i].getAluno().getNome()))
+                return i;
         }
+        return -1;
+    }
+
+    public String appendBolsista(Bolsista bolsista){
 
         int size = this.bolsistas.length;
 
@@ -67,9 +76,7 @@ public class Dados {
         novoArray[size] = bolsista;
         this.bolsistas = novoArray;
 
-        return "Bolsista cadastrado com sucesso.";
-
-        
+        return "Bolsista cadastrado com sucesso.";   
     }
 
     private boolean checkDuplicate(String nome){
@@ -101,13 +108,12 @@ public class Dados {
     }
 
     public Acompanhamento findAcompanhamento(String nome){
-        for (int i = 0; i < acompanhamentos.length; i++){
-            if (acompanhamentos[i].getAluno().getNome().equals(nome)) {
-                return acompanhamentos[i];
-            }
-        }
+        int index = findAcompanhamentoIndex(nome);
 
-        return null;
+        if (index == -1)
+            return null;
+
+        return acompanhamentos[index];
     }
 
     public String listAlunos(){
@@ -141,7 +147,7 @@ public class Dados {
         String relatorio = "";
 
         for (int i = 0; i < acompanhamentos.length; i++){
-            relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome() + ": Risco ");
+            relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome());
             relatorio = relatorio.concat(acompanhamentos[i].getRiscoLabel() + "\n");
         }
 
@@ -170,6 +176,8 @@ public class Dados {
     public String maiorNome(){
         if (alunos.length == 0)
             return Erro.E5;
+        if (alunos.length == 1)
+            return alunos[0].getNome();
 
         int k = 0;
         for (int i = 1; i < alunos.length; i++){
