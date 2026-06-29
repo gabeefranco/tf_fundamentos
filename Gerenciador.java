@@ -1,20 +1,19 @@
-// TODO: buffer clears
-
 import java.util.Scanner;
 
 public class Gerenciador {
   private Dados dados;
   private static Scanner input = new Scanner(System.in);
   
-  String nome = "", local = "", curso = "", matricula = "", projeto = "", orientador = "";
-  int idade = 0, semestre = 0, ano = 0;
-  boolean bolsista = false;
+  
 
   public Gerenciador(Dados dados) {
     this.dados = dados;
   }
 
   public String cadastrarAluno() {
+    String nome = "", local = "", curso = "", matricula = "";
+    int idade = 0, semestre = 0, ano = 0;
+    
     while (nome.length() == 0){
       System.out.println("Insira o nome do aluno:");
       nome = input.nextLine();}
@@ -60,6 +59,7 @@ public class Gerenciador {
   }
 
   public String cadastrarBolsista(boolean resposta, Aluno alunoparametro) {
+    String projeto = "", orientador = "";
 
     Aluno aluno;
 
@@ -74,11 +74,11 @@ public class Gerenciador {
 
     while (projeto.length() == 0){
       System.out.println("Insira o nome do projeto:");
-      String projeto = input.nextLine();}
+      projeto = input.nextLine();}
 
     while (orientador.length() == 0){
       System.out.println("Insira o nome do orientador:");
-      String orientador = input.nextLine();}
+      orientador = input.nextLine();}
 
     Bolsista bolsista = new Bolsista(aluno, projeto, orientador);
     aluno.setBolsista(true);
@@ -94,43 +94,33 @@ public class Gerenciador {
     if (aluno == null)
       return Erro.E2;
 
-    Acompanhamento acomp = new Acompanhamento(aluno, 0, 0, 0, 0, 0);
-
     System.out.println("Insira a quantidade de atividades entregues:");
     int entregues = input.nextInt();
     input.nextLine(); //buffer clear
-    acomp.setAtividadesEntregues(entregues);
-
+    
     System.out.println("Insira a quantidade de atividades entregues nas quais foi declarado o uso de IA:");
     int ia = input.nextInt();
     input.nextLine(); //buffer clear
-    if (acomp.setAtividadesIA(ia))
-      return Erro.E4;
 
     System.out.println("Insira a quantidade de atividades entregues que o aluno soube explicar:");
     int explicadas = input.nextInt();
     input.nextLine(); //buffer clear
-    if (acomp.setAtividadesExplicadas(explicadas))
-      return Erro.E4;
 
     System.out.println("Insira a quantidade de atividades entregues que foram feitas sem ajuda:");
     int semajuda = input.nextInt();
     input.nextLine(); //buffer clear
-    if (acomp.setAtividadesSemAjuda(semajuda))
-      return Erro.E4;
 
-    System.out.println("Insira a quanntidade de atividades entregues que utilizarão estruturas não estudadas:");
+    System.out.println("Insira a quanntidade de atividades entregues que utilizaram estruturas não estudadas:");
     int naoestudadas = input.nextInt();
     input.nextLine(); //buffer clear
-    if (acomp.setAtividadesNaoEstudadas(naoestudadas))
+
+    if (ia > entregues || explicadas > entregues || semajuda > entregues || naoestudadas > entregues){
       return Erro.E4;
+    }
 
-    if (ia + explicadas + semajuda + naoestudadas > entregues)
-      return Erro.E4;
+    Acompanhamento acomp = new Acompanhamento(aluno, entregues, ia, explicadas, semajuda, naoestudadas);
 
-    this.dados.appendAcompanhamento(acomp);
-    return "Acompanhamento registrado com sucesso.";
-
+    return this.dados.appendAcompanhamento(acomp);
   }
 
   public String listarAlunos() {
@@ -183,7 +173,7 @@ public class Gerenciador {
     System.out.println("Insira o nome de um aluno:");
     Acompanhamento acomp = this.dados.findAcompanhamento(input.nextLine());
     if (acomp == null)
-      return Erro.E2;
+      return Erro.E10;
 
     return acomp.getRiscoLabel();
 
