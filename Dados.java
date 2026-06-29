@@ -7,10 +7,10 @@ public class Dados {
     private Bolsista[] bolsistas;
 
     public Dados(){
-        alunos = new Aluno[]{};
-        chamada = "";
-        acompanhamentos = new Acompanhamento[]{};
-        bolsistas = new Bolsista[]{};
+        this.alunos = new Aluno[256];
+        this.chamada = "";
+        this.acompanhamentos = new Acompanhamento[256];
+        this.bolsistas = new Bolsista[256];
     }
 
     public String appendAluno(Aluno aluno){
@@ -18,62 +18,80 @@ public class Dados {
             return Erro.E3;
         }
 
-        int size = this.alunos.length;
+        int size = 0;
 
-        Aluno[] novoArray = new Aluno[size + 1];
-
-        for (int i = 0; i < size; i++){
-            novoArray[i] = this.alunos[i];
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
         }
 
-        novoArray[size] = aluno;
-        this.alunos = novoArray;
+        if (size == 255){
+            return Erro.E10;
+        }
+
+        this.alunos[size] = aluno;
+
+        System.out.println("debug_alunos.size:"+size);
 
         return "Aluno cadastrado com sucesso.";
     }
 
     public String appendAcompanhamento(Acompanhamento acomp){
-        if (checkDuplicate(acomp.getAluno().getNome())){
-            return Erro.E3;
+
+        int size = 0;
+
+        for (int i = 0; i < this.acompanhamentos.length; i++){
+            if (this.acompanhamentos[i] == null){
+                size = i;
+                break;
+            }
         }
 
-        int size = this.acompanhamentos.length;
-
-        Acompanhamento[] novoArray = new Acompanhamento[size + 1];
-
-        for (int i = 0; i < size; i++){
-            novoArray[i] = this.acompanhamentos[i];
+        if (size == 255){
+            return Erro.E10;
         }
 
-        novoArray[size] = acomp;
-        this.acompanhamentos = novoArray;
+        this.acompanhamentos[size] = acomp;
+
+        System.out.println("debug_acompanhamentos.size:"+size);
 
         return "Acompanhamento cadastrado com sucesso.";
     }
 
     public String appendBolsista(Bolsista bolsista){
-        if (checkDuplicate(bolsista.getNome())){
-            return Erro.E3;
+
+        int size = 0;
+
+        for (int i = 0; i < this.bolsistas.length; i++){
+            if (this.bolsistas[i] == null){
+                size = i;
+                break;
+            }
         }
 
-        int size = this.bolsistas.length;
-
-        Bolsista[] novoArray = new Bolsista[size + 1];
-
-        for (int i = 0; i < size; i++){
-            novoArray[i] = this.bolsistas[i];
+        if (size == 255){
+            return Erro.E10;
         }
 
-        novoArray[size] = bolsista;
-        this.bolsistas = novoArray;
+        this.bolsistas[size] = bolsista;
 
         return "Bolsista cadastrado com sucesso.";
-
-        
     }
 
     private boolean checkDuplicate(String nome){
-        for (int i = 0; i < alunos.length; i++){
+
+        int size = 0;
+
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        for (int i = 0; i < size; i++){
             if (nome.equals(alunos[i].getNome())){
                 return true;
             }
@@ -83,7 +101,17 @@ public class Dados {
     }
 
     private int findAlunoIndex(String nome){
-        for (int i = 0; i < alunos.length; i++){
+
+        int size = 0;
+
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        for (int i = 0; i < size; i++){
             if (nome.equals(alunos[i].getNome()))
                 return i;
         }
@@ -101,8 +129,20 @@ public class Dados {
     }
 
     public Acompanhamento findAcompanhamento(String nome){
-        for (int i = 0; i < acompanhamentos.length; i++){
-            if (acompanhamentos[i].getAluno().getNome().equals(nome)) {
+
+        int size = 0;
+
+        for (int i = 0; i < this.acompanhamentos.length; i++){
+            if (this.acompanhamentos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        System.out.println("debug_acompanhamentos.size:"+size);
+
+        for (int i = 0; i < size; i++) {
+            if (this.acompanhamentos[i].getAluno().getNome().equals(nome)) {
                 return acompanhamentos[i];
             }
         }
@@ -111,11 +151,19 @@ public class Dados {
     }
 
     public String listAlunos(){
-        if (alunos.length == 0)
+        int size = 0;
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E5;
         
         String lista = "";
-        for (int i = 0; i < alunos.length; i++){
+        for (int i = 0; i < size; i++){
             lista = lista.concat(alunos[i].getNome() + "\n");
         }
 
@@ -123,11 +171,20 @@ public class Dados {
     }
 
     public String listBolsistas(){
-        if (bolsistas.length == 0)
+        int size = 0;
+
+        for (int i = 0; i < this.bolsistas.length; i++){
+            if (this.bolsistas[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E5;
 
         String lista = "";
-        for (int i = 0; i < bolsistas.length; i++){
+        for (int i = 0; i < size; i++){
             lista = lista.concat(bolsistas[i].getNome());
         }
 
@@ -135,12 +192,20 @@ public class Dados {
     }
 
     public String riskReport(){
-        if (acompanhamentos.length == 0)
+        int size = 0;
+        for (int i = 0; i < this.acompanhamentos.length; i++){
+            if (this.acompanhamentos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E8;
 
         String relatorio = "";
 
-        for (int i = 0; i < acompanhamentos.length; i++){
+        for (int i = 0; i < size; i++){
             relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome() + ": Risco ");
             relatorio = relatorio.concat(acompanhamentos[i].getRiscoLabel() + "\n");
         }
@@ -150,12 +215,20 @@ public class Dados {
     }
 
     public String riskReportHigh(){
-        if (acompanhamentos.length == 0)
+        int size = 0;
+        for (int i = 0; i < this.acompanhamentos.length; i++){
+            if (this.acompanhamentos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E8;
 
         String relatorio = "";
 
-        for (int i = 0; i < acompanhamentos.length; i++){
+        for (int i = 0; i < size; i++){
             if (acompanhamentos[i].getRiscoLabel().equals("ALTO")){
                 relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome() + ": Risco ALTO\n");
             }
@@ -168,11 +241,21 @@ public class Dados {
     }
 
     public String maiorNome(){
-        if (alunos.length == 0)
+        int size = 0;
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E5;
+        if (size == 1)
+            return alunos[0].getNome();
 
         int k = 0;
-        for (int i = 1; i < alunos.length; i++){
+        for (int i = 1; i < size; i++){
             if (alunos[i].getNome().length() > alunos[k].getNome().length())
                 k = i;
         }
@@ -180,26 +263,42 @@ public class Dados {
     }
 
     public String averageAge(){
-        if (alunos.length == 0)
+        int size = 0;
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E5;
 
         double sum = 0;
 
-        for (int i = 0; i < alunos.length; i++){
+        for (int i = 0; i < size; i++){
             sum += alunos[i].getIdade();
         }
 
-        sum = sum / alunos.length;
+        sum = sum / size;
         return "Idade média dos alunos: " + sum;
     }
 
     public String totalVowels(){
-        if (alunos.length == 0)
+        int size = 0;
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0)
             return Erro.E5;
         
         int sum = 0;
 
-        for (int k = 0; k < alunos.length; k++){
+        for (int k = 0; k < size; k++){
             String nome = alunos[k].getNome();
 
             for (int j = 0; j < nome.length(); j++){
@@ -221,10 +320,18 @@ public class Dados {
     public void makeChamada(){
         this.chamada = "";
 
-        if (alunos.length == 0){
+        int size = 0;
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
+
+        if (size == 0){
             this.chamada = Erro.E5;
         } else {
-            for (int i = 0; i < alunos.length; i++){
+            for (int i = 0; i < size; i++){
                 this.chamada = this.chamada.concat(alunos[i].getMatricula() + " / ");
                 this.chamada = this.chamada.concat(alunos[i].getNome() + " / ");
                 this.chamada = this.chamada.concat(alunos[i].getCurso() + "\n");
@@ -241,12 +348,19 @@ public class Dados {
 
     public double coursePercent(String curso){
         double num = 0;
+        int size = 0;
+        for (int i = 0; i < this.alunos.length; i++){
+            if (this.alunos[i] == null){
+                size = i;
+                break;
+            }
+        }
 
-        for (int i = 0; i < alunos.length; i++){
+        for (int i = 0; i < size; i++){
             if (alunos[i].getCurso().equals(curso))
                 num++;
         }
 
-        return (num / alunos.length) * 100;
+        return (num / size) * 100;
     }
 }
