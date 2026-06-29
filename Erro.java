@@ -8,5 +8,4 @@ public class Erro {
     public static final String E7 = "Erro: Não foi possível calcular o risco pedagógico.";
     public static final String E8 = "Erro: Não existem acompanhamentos cadastrados.";
     public static final String E9 = "Erro: Não existe nenhum aluno com risco alto.";
-    public static final String E10 = "Erro: Numero máximo de alunos atingido.";
 }

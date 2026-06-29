@@ -6,16 +6,15 @@ public class Gerenciador {
   private Dados dados;
   private static Scanner input = new Scanner(System.in);
   
-  
+  String nome = "", local = "", curso = "", matricula = "", projeto = "", orientador = "";
+  int idade = 0, semestre = 0, ano = 0;
+  boolean bolsista = false;
 
   public Gerenciador(Dados dados) {
     this.dados = dados;
   }
 
   public String cadastrarAluno() {
-    String nome = "", local = "", curso = "", matricula = "";
-    int idade = 0, semestre = 0, ano = 0;
-    
     while (nome.length() == 0){
       System.out.println("Insira o nome do aluno:");
       nome = input.nextLine();}
@@ -61,7 +60,6 @@ public class Gerenciador {
   }
 
   public String cadastrarBolsista(boolean resposta, Aluno alunoparametro) {
-    String projeto = "", orientador = "";
 
     Aluno aluno;
 
@@ -76,11 +74,11 @@ public class Gerenciador {
 
     while (projeto.length() == 0){
       System.out.println("Insira o nome do projeto:");
-      projeto = input.nextLine();}
+      String projeto = input.nextLine();}
 
     while (orientador.length() == 0){
       System.out.println("Insira o nome do orientador:");
-      orientador = input.nextLine();}
+      String orientador = input.nextLine();}
 
     Bolsista bolsista = new Bolsista(aluno, projeto, orientador);
     aluno.setBolsista(true);
@@ -127,7 +125,12 @@ public class Gerenciador {
     if (acomp.setAtividadesNaoEstudadas(naoestudadas))
       return Erro.E4;
 
-    return this.dados.appendAcompanhamento(acomp);
+    if (ia + explicadas + semajuda + naoestudadas > entregues)
+      return Erro.E4;
+
+    this.dados.appendAcompanhamento(acomp);
+    return "Acompanhamento registrado com sucesso.";
+
   }
 
   public String listarAlunos() {
