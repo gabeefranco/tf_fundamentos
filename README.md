@@ -55,7 +55,7 @@ VERSION CONTROL:
 ---    
     
 REFERENCIAS:
-    https://docs.oracle.com/javase/tutorial/java/index.html
+    Nao utilizamos referencias durante a producao do trabalho.
     
 RELATORIO:
     Os questionamentos que surgiram durante a programacao foram discutidas por todos entre o grupo.
