@@ -147,7 +147,7 @@ public class Dados {
         String relatorio = "";
 
         for (int i = 0; i < acompanhamentos.length; i++){
-            relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome());
+            relatorio = relatorio.concat(acompanhamentos[i].getAluno().getNome() + ": ");
             relatorio = relatorio.concat(acompanhamentos[i].getRiscoLabel() + "\n");
         }
 
