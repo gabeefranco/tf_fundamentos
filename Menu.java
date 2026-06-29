@@ -12,9 +12,10 @@ public class Menu {
     gerenciador = new Gerenciador(dados);
 
     Scanner input = new Scanner(System.in);
+    String result = "";
     while (true) {
       System.out.println(
-          "Escolha uma opcao:" + "\n" +
+          "\fEscolha uma opcao:" + "\n" +
               "1 - Cadastro de Aluno" + "\n" +
               "2 - Cadastro de Bolsisa " + "\n" +
               "3 - Regisrar dados de acompanhamento" + "\n" +
@@ -30,70 +31,49 @@ public class Menu {
               "13 - Relatorio geral de risco pedagogico" + "\n" +
               "14 - Alunos em alto risco" + "\n" +
               "15 - (Colocar inovacao aqui)" + "\n" +
-              "16 - Encerrar o programa");
-      prompt(input.nextInt());
+              "16 - Encerrar o programa\n\n" +
+              result);
+
+      result = prompt(input.nextInt());
     }
   }
 
-  public static void prompt(int option) {
+  public static String prompt(int option) {
     switch (option) {
-
-      // passar parametros
-
-      // String nome,int idade,String local, String curso, String matricula,int
-      // semestre,int ano ,bool bolsista, String projeto, String orientador
-
       case 1:
-        gerenciador.cadastrarAluno(); // completar com o nome correto das gerenciadores
-        break;
+        return gerenciador.cadastrarAluno(); 
       case 2:
-        gerenciador.cadastrarBolsista(false, null);
-        break;
+        return gerenciador.cadastrarBolsista(false, null);
       case 3:
-        gerenciador.registrarAcompanhamento();
-        break;
+        return gerenciador.registrarAcompanhamento();
       case 4:
-        gerenciador.listarAlunos();
-        break;
+        return gerenciador.listarAlunos();
       case 5:
-        gerenciador.listarBolsistas();
-        break;
+        return gerenciador.listarBolsistas();
       case 6:
-        gerenciador.maiorNome();
-        break;
+        return gerenciador.maiorNome();
       case 7:
-        gerenciador.vogaisNomes();
-        break;
+        return gerenciador.vogaisNomes();
       case 8:
-        gerenciador.percentualAlunos();
-        break;
+        return gerenciador.percentualAlunos();
       case 9:
-        gerenciador.mediaIdadeAlunos();
-        break;
+        return gerenciador.mediaIdadeAlunos();
       case 10:
-        gerenciador.criarChamada();
-        break;
+        return gerenciador.criarChamada();
       case 11:
-        gerenciador.chamada();
-        break;
+        return gerenciador.chamada();
       case 12:
-        gerenciador.calcularRisco();
-        break;
+        return gerenciador.calcularRisco();
       case 13:
-        gerenciador.relatorioRisco();
-        break;
+        return gerenciador.relatorioRisco();
       case 14:
-        gerenciador.altoRisco();
-        break;
+        return gerenciador.altoRisco();
       // TODO: IMPLEMENTAR INOVAÇÃO
       case 15:
-        gerenciador.inovacao();
-        break;
+        return gerenciador.inovacao();
       case 16:
         System.exit(0);
-
-      default:
-        System.out.println("Opção inválida");
     }
+    return Erro.E1;
   }
 }

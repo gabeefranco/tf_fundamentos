@@ -1,4 +1,4 @@
-// TODO: validação nos metodos com entrada
+// TODO: buffer clears
 
 import java.util.Scanner;
 
@@ -6,38 +6,45 @@ public class Gerenciador {
   private Dados dados;
   private static Scanner input = new Scanner(System.in);
   
-  String nome, local, curso, matricula, projeto, orientador;
-  int idade, semestre, ano;
-  boolean bolsista;
+  String nome = "", local = "", curso = "", matricula = "", projeto = "", orientador = "";
+  int idade = 0, semestre = 0, ano = 0;
+  boolean bolsista = false;
 
   public Gerenciador(Dados dados) {
     this.dados = dados;
   }
 
-  public void cadastrarAluno() {
-    System.out.println("Insira o nome do aluno:");
-    nome = input.nextLine();
+  public String cadastrarAluno() {
+    while (nome.length() == 0){
+      System.out.println("Insira o nome do aluno:");
+      nome = input.nextLine();}
 
-    System.out.println("Insira o local de nascimento do aluno:");
-    local = input.nextLine();
+    while (local.length() == 0){
+      System.out.println("Insira o local de nascimento do aluno:");
+      local = input.nextLine();}
 
+    while (curso.length() == 0){
     System.out.println("Insira o curso do aluno:");
-    curso = input.nextLine();
+    curso = input.nextLine();}
 
-    System.out.println("Insira a matricula do aluno:");
-    matricula = input.nextLine();
+    while (matricula.length() == 0){
+      System.out.println("Insira a matricula do aluno:");
+      matricula = input.nextLine();}
 
-    System.out.println("Insira a idade do aluno:");
-    idade = input.nextInt();
-    input.nextLine(); //buffer clear
+    while (idade == 0 ){
+      System.out.println("Insira a idade do aluno:");
+      idade = input.nextInt();
+      input.nextLine();} //buffer clear
 
-    System.out.println("Insira o semestre do aluno:");
-    semestre = input.nextInt();
-    input.nextLine(); //buffer clear
+    while (semestre == 0){
+      System.out.println("Insira o semestre do aluno:");
+      semestre = input.nextInt();
+      input.nextLine();} //buffer clear
 
-    System.out.println("Insira o ano do aluno:");
-    ano = input.nextInt();
-    input.nextLine(); //buffer clear
+    while (ano == 0){
+      System.out.println("Insira o ano do aluno:");
+      ano = input.nextInt();
+      input.nextLine();} //buffer clear
 
     Aluno aluno = new Aluno(nome, idade, local, curso, matricula, semestre, ano, false);
     this.dados.appendAluno(aluno);
@@ -45,12 +52,14 @@ public class Gerenciador {
     System.out.println("O aluno é bolsista? (s/n)");
     String resposta = input.nextLine().toLowerCase();
     if (resposta.equals("s")){
-      cadastrarBolsista(true, aluno);
-    }
+      return cadastrarBolsista(true, aluno);
+    } 
+
+    return "Aluno cadastrado com sucesso.";
 
   }
 
-  public void cadastrarBolsista(boolean resposta, Aluno alunoparametro) {
+  public String cadastrarBolsista(boolean resposta, Aluno alunoparametro) {
 
     Aluno aluno;
 
@@ -59,24 +68,31 @@ public class Gerenciador {
       } else {
         System.out.println("Insira o nome do aluno a quem você deseja cadastrar uma bolsa:");
         aluno = this.dados.findAluno(input.nextLine());
+        if (aluno == null)
+          return Erro.E2;
       }
 
-    System.out.println("Insira o nome do projeto:");
-    String projeto = input.nextLine();
+    while (projeto.length() == 0){
+      System.out.println("Insira o nome do projeto:");
+      String projeto = input.nextLine();}
 
-    System.out.println("Insira o nome do orientador:");
-    String orientador = input.nextLine();
+    while (orientador.length() == 0){
+      System.out.println("Insira o nome do orientador:");
+      String orientador = input.nextLine();}
 
     Bolsista bolsista = new Bolsista(aluno, projeto, orientador);
     aluno.setBolsista(true);
-    this.dados.appendBolsista(bolsista);
+    return this.dados.appendBolsista(bolsista);
 
   }
 
-  public void registrarAcompanhamento() {
+  public String registrarAcompanhamento() {
     System.out.println("Insira o nome do Aluno que você deseja registrar o acompanhamento:");
     String nome = input.nextLine();
     Aluno aluno = this.dados.findAluno(nome);
+
+    if (aluno == null)
+      return Erro.E2;
 
     Acompanhamento acomp = new Acompanhamento(aluno, 0, 0, 0, 0, 0);
 
@@ -88,84 +104,102 @@ public class Gerenciador {
     System.out.println("Insira a quantidade de atividades entregues nas quais foi declarado o uso de IA:");
     int ia = input.nextInt();
     input.nextLine(); //buffer clear
-    acomp.setAtividadesIA(ia);
+    if (acomp.setAtividadesIA(ia))
+      return Erro.E4;
 
     System.out.println("Insira a quantidade de atividades entregues que o aluno soube explicar:");
     int explicadas = input.nextInt();
     input.nextLine(); //buffer clear
-    acomp.setAtividadesExplicadas(explicadas);
+    if (acomp.setAtividadesExplicadas(explicadas))
+      return Erro.E4;
 
     System.out.println("Insira a quantidade de atividades entregues que foram feitas sem ajuda:");
     int semajuda = input.nextInt();
     input.nextLine(); //buffer clear
-    acomp.setAtividadesSemAjuda(semajuda);
+    if (acomp.setAtividadesSemAjuda(semajuda))
+      return Erro.E4;
 
     System.out.println("Insira a quanntidade de atividades entregues que utilizarão estruturas não estudadas:");
     int naoestudadas = input.nextInt();
     input.nextLine(); //buffer clear
-    acomp.setAtividadesNaoEstudadas(naoestudadas);
+    if (acomp.setAtividadesNaoEstudadas(naoestudadas))
+      return Erro.E4;
+
+    if (ia + explicadas + semajuda + naoestudadas > entregues)
+      return Erro.E4;
 
     this.dados.appendAcompanhamento(acomp);
+    return "Acompanhamento registrado com sucesso.";
 
   }
 
-  public void listarAlunos() {
-    this.dados.listAlunos();
+  public String listarAlunos() {
+    return this.dados.listAlunos();
   }
 
-  public void listarBolsistas() {
-    this.dados.listBolsistas();
+  public String listarBolsistas() {
+    return this.dados.listBolsistas();
   }
 
-  public void maiorNome(){
-    this.dados.maiorNome();
+  public String maiorNome(){
+    return this.dados.maiorNome();
   }
 
-  public void vogaisNomes(){
-    System.out.println("Numero total de vogais: " + this.dados.totalVowels());
+  public String vogaisNomes(){
+    return this.dados.totalVowels();
   }
 
-  public void percentualAlunos() {
+  public String percentualAlunos() {
+    String curso = "";
 
-    System.out.println("Insira um curso:");
-    String curso = input.nextLine();
+    while (curso.length() == 0){
+      System.out.println("Insira um curso:");
+      curso = input.nextLine();
+    }
 
-    System.out.print("O percentual de alunos matriculados nesse curso é de: " + this.dados.coursePercent(curso) + "%\n");
+    return "O percentual de alunos matriculados nesse curso é de: " + this.dados.coursePercent(curso) + "%";
 
   }
 
-  public void mediaIdadeAlunos() {
-    System.out.println("Idade média dos alunos: " + this.dados.averageAge());
+  public String mediaIdadeAlunos() {
+    return this.dados.averageAge();
   }
 
-  public void criarChamada() {
+  public String criarChamada() {
     this.dados.makeChamada();
+
+    if (chamada().equals(Erro.E5))
+      return chamada();
+
+    return "Chamada criada com sucesso.";
   }
 
-  public void chamada() {
-    this.dados.printChamada();
+  public String chamada() {
+    return this.dados.printChamada();
   }
 
-  public void calcularRisco() {
+  public String calcularRisco() {
 
     System.out.println("Insira o nome de um aluno:");
     Acompanhamento acomp = this.dados.findAcompanhamento(input.nextLine());
+    if (acomp == null)
+      return Erro.E2;
 
-    System.out.println("O risco pedagógico deste aluno é " + acomp.getRiscoLabel());
-
-  }
-
-  public void relatorioRisco() {
-
-    this.dados.riskReport();
+    return acomp.getRiscoLabel();
 
   }
 
-  public void altoRisco() {
-    this.dados.riskReportHigh();
+  public String relatorioRisco() {
+
+    return this.dados.riskReport();
+
   }
 
-  public void inovacao() {
+  public String altoRisco() {
+    return this.dados.riskReportHigh();
+  }
 
+  public String inovacao() {
+    return null;
   }
 }
