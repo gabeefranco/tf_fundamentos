@@ -53,7 +53,7 @@ COMO O PROGRAMA FUNCIONA:
 		
 		Bolsista: É a classe base da criação de um bolsista, contendo os atributos Aluno, projeto e orientador.
 		
-		Acompanhamento: É a classe onde os metodos do cálculo de risco pedagógico estão, contendo também um método de "label" para classificar os alunos entre os riscos de ALTO, MODERADO ou BAIXO.
+		Acompanhamento: É a classe onde os metodos do cálculo de risco pedagógico estão, contendo também um método de "get.label" que retorna a classificação dos alunos entre os riscos de ALTO, MODERADO ou BAIXO.
 		
 		Dados: É a classe onde occore as intancieções de vetores de objetos, também contendo alguns dos métodos
 		
