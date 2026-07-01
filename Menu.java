@@ -1,18 +1,18 @@
-// TODO: atualizar README.md
-
 import java.util.Scanner;
 
 public class Menu {
 
   private static Dados dados;
   private static Gerenciador gerenciador;
+  private static Scanner input;
+  private static String result;
 
   public static void main(String[] args) {
     dados = new Dados();
     gerenciador = new Gerenciador(dados);
+    input = new Scanner(System.in);
+    result = "";
 
-    Scanner input = new Scanner(System.in);
-    String result = "";
     while (true) {
       System.out.println(
           "\fEscolha uma opcao:" + "\n" +
@@ -30,11 +30,17 @@ public class Menu {
               "12 - Calcular nivel de risco pedagogico" + "\n" +
               "13 - Relatorio geral de risco pedagogico" + "\n" +
               "14 - Alunos em alto risco" + "\n" +
-              "15 - (Colocar inovacao aqui)" + "\n" +
+              "15 - Ranking e media de risco" + "\n" +
               "16 - Encerrar o programa\n\n" +
+
               result);
 
-      result = prompt(input.nextInt());
+      try {
+          result = prompt(input.nextInt());
+      } catch(Exception e) {
+          System.out.println("\f"+ Erro.E0);
+          System.exit(-1);
+      }
     }
   }
 
@@ -68,12 +74,12 @@ public class Menu {
         return gerenciador.relatorioRisco();
       case 14:
         return gerenciador.altoRisco();
-      // TODO: IMPLEMENTAR INOVAÇÃO
       case 15:
         return gerenciador.inovacao();
       case 16:
         System.exit(0);
+      default:
+        return Erro.E1;
     }
-    return Erro.E1;
   }
 }

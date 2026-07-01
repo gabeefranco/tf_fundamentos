@@ -4,8 +4,6 @@ public class Gerenciador {
   private Dados dados;
   private static Scanner input = new Scanner(System.in);
   
-  
-
   public Gerenciador(Dados dados) {
     this.dados = dados;
   }
@@ -23,8 +21,8 @@ public class Gerenciador {
       local = input.nextLine();}
 
     while (curso.length() == 0){
-    System.out.println("Insira o curso do aluno:");
-    curso = input.nextLine();}
+      System.out.println("Insira o curso do aluno:");
+      curso = input.nextLine();}
 
     while (matricula.length() == 0){
       System.out.println("Insira a matricula do aluno:");
@@ -33,44 +31,46 @@ public class Gerenciador {
     while (idade == 0 ){
       System.out.println("Insira a idade do aluno:");
       idade = input.nextInt();
-      input.nextLine();} //buffer clear
-
+      input.nextLine(); //buffer clear
+      if (idade < 0) {return Erro.E11;}}
+      
     while (semestre == 0){
       System.out.println("Insira o semestre do aluno:");
       semestre = input.nextInt();
-      input.nextLine();} //buffer clear
-
+      input.nextLine(); //buffer clear
+      if (semestre < 0) {return Erro.E11;}}
+    
     while (ano == 0){
       System.out.println("Insira o ano do aluno:");
       ano = input.nextInt();
-      input.nextLine();} //buffer clear
+      input.nextLine(); //buffer clear
+      if (ano < 0) {return Erro.E11;}}
 
     Aluno aluno = new Aluno(nome, idade, local, curso, matricula, semestre, ano, false);
-    this.dados.appendAluno(aluno);
+    String msg = this.dados.appendAluno(aluno);
 
-    System.out.println("O aluno é bolsista? (s/n)");
+    System.out.println("O aluno eh bolsista? (s/n)");
     String resposta = input.nextLine().toLowerCase();
+
     if (resposta.equals("s")){
       return cadastrarBolsista(true, aluno);
     } 
 
-    return "Aluno cadastrado com sucesso.";
-
+    return msg;
   }
 
   public String cadastrarBolsista(boolean resposta, Aluno alunoparametro) {
     String projeto = "", orientador = "";
-
     Aluno aluno;
 
     if (resposta){
       aluno = alunoparametro;
-      } else {
-        System.out.println("Insira o nome do aluno a quem você deseja cadastrar uma bolsa:");
-        aluno = this.dados.findAluno(input.nextLine());
-        if (aluno == null)
-          return Erro.E2;
-      }
+    } else {
+      System.out.println("Insira o nome do aluno a quem voce deseja cadastrar uma bolsa:");
+      aluno = this.dados.findAluno(input.nextLine());
+
+      if (aluno == null) {return Erro.E2;}
+    }
 
     while (projeto.length() == 0){
       System.out.println("Insira o nome do projeto:");
@@ -82,37 +82,41 @@ public class Gerenciador {
 
     Bolsista bolsista = new Bolsista(aluno, projeto, orientador);
     aluno.setBolsista(true);
-    return this.dados.appendBolsista(bolsista);
 
+    return this.dados.appendBolsista(bolsista);
   }
 
   public String registrarAcompanhamento() {
-    System.out.println("Insira o nome do Aluno que você deseja registrar o acompanhamento:");
+    System.out.println("Insira o nome do Aluno que voce deseja registrar o acompanhamento:");
     String nome = input.nextLine();
     Aluno aluno = this.dados.findAluno(nome);
 
-    if (aluno == null)
-      return Erro.E2;
-
+    if (aluno == null) {return Erro.E2;}
+      
     System.out.println("Insira a quantidade de atividades entregues:");
     int entregues = input.nextInt();
     input.nextLine(); //buffer clear
+    if (entregues < 0) {return Erro.E11;}
     
     System.out.println("Insira a quantidade de atividades entregues nas quais foi declarado o uso de IA:");
     int ia = input.nextInt();
     input.nextLine(); //buffer clear
+    if (ia < 0) {return Erro.E11;}
 
     System.out.println("Insira a quantidade de atividades entregues que o aluno soube explicar:");
     int explicadas = input.nextInt();
     input.nextLine(); //buffer clear
+    if (explicadas < 0) {return Erro.E11;}
 
     System.out.println("Insira a quantidade de atividades entregues que foram feitas sem ajuda:");
     int semajuda = input.nextInt();
     input.nextLine(); //buffer clear
+    if (semajuda < 0) {return Erro.E11;}
 
     System.out.println("Insira a quanntidade de atividades entregues que utilizaram estruturas não estudadas:");
     int naoestudadas = input.nextInt();
     input.nextLine(); //buffer clear
+    if (naoestudadas < 0) {return Erro.E11;}
 
     if (ia > entregues || explicadas > entregues || semajuda > entregues || naoestudadas > entregues){
       return Erro.E4;
@@ -147,7 +151,10 @@ public class Gerenciador {
       curso = input.nextLine();
     }
 
-    return "O percentual de alunos matriculados nesse curso é de: " + this.dados.coursePercent(curso) + "%";
+    double porcentagem = this.dados.coursePercent(curso);
+    if (porcentagem == -1) {return Erro.E5;}
+
+    return "O percentual de alunos matriculados nesse curso eh de: " + porcentagem + "%";
 
   }
 
@@ -158,8 +165,7 @@ public class Gerenciador {
   public String criarChamada() {
     this.dados.makeChamada();
 
-    if (chamada().equals(Erro.E5))
-      return chamada();
+    if (chamada().length() == 0) {return Erro.E5;}
 
     return "Chamada criada com sucesso.";
   }
@@ -169,20 +175,16 @@ public class Gerenciador {
   }
 
   public String calcularRisco() {
-
     System.out.println("Insira o nome de um aluno:");
     Acompanhamento acomp = this.dados.findAcompanhamento(input.nextLine());
-    if (acomp == null)
-      return Erro.E10;
+
+    if (acomp == null) {return Erro.E10;}
 
     return acomp.getRiscoLabel();
-
   }
 
   public String relatorioRisco() {
-
     return this.dados.riskReport();
-
   }
 
   public String altoRisco() {
@@ -190,6 +192,6 @@ public class Gerenciador {
   }
 
   public String inovacao() {
-    return null;
+    return dados.rankingRisco();
   }
 }

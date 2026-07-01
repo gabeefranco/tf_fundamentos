@@ -8,7 +8,6 @@ public class Acompanhamento {
   private double riscoPedagogico;
 
   public Acompanhamento(Aluno aluno, int atividadesEntregues, int atividadesIA, int atividadesExplicadas, int atividadesSemAjuda, int atividadesNaoEstudadas){
-
     this.aluno = aluno;
     this.atividadesEntregues = atividadesEntregues;
     this.atividadesIA = atividadesIA;
@@ -37,13 +36,13 @@ public class Acompanhamento {
     this.riscoPedagogico = this.calcularRisco();
 
     if (this.riscoPedagogico <= 3.3){
-      return "O risco pedagógico deste aluno é BAIXO";
+      return "O risco pedagogico deste aluno eh BAIXO";
     }
     if (this.riscoPedagogico > 3.3 && this.riscoPedagogico < 6.6){
-      return "O risco pedagógico deste aluno é MODERADO";
+      return "O risco pedagogico deste aluno eh MODERADO";
     }
     if (this.riscoPedagogico >= 6.6){
-      return "O risco pedagógico deste aluno é ALTO";
+      return "O risco pedagogico deste aluno eh ALTO";
     }
 
     return Erro.E7;
