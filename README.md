@@ -42,7 +42,7 @@ COMO O PROGRAMA FUNCIONA:
 	O sistema é constituido por 8 classes: Pessoa, Aluno, Bolsista, Acompanhamento, Dados, Erro, Gerenciador e Menu. O método main se localiza na classe Menu e, quando chamado, passa a receber informações do usuário por meio de um loop while e um switch case.
 	Apos o input do usuario um dos metodos sera "rodado".
 	
-    Explicacao das classes:
+    Explicação das classes:
 		Pessoa: É apenas uma classe básica de pessoa, contendo os atributos nome, idade e local de nascimento.
 		
 		Aluno: É a classe base da criação de um aluno, contendo os atributos Pessoa, curso, matricula, semestre, ano e bolsista.
@@ -58,6 +58,13 @@ COMO O PROGRAMA FUNCIONA:
 		Erro: Classe contendo mensagens erros diversos que podem ocorrer durante a execução do programa.
 		
 		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
+
+  COMPOSIÇÃO DAS CLASSES:
+  
+  	Pessoa: A classe Pessoa é a classe base, sendo só instanciada em Aluno.
+	Aluno: A classe Aluno instancia "Pessoa" como atributo.
+	Bolsista: A classe Bolsista intancia "Aluno" como atributo.
+	Acompanhamento: A classe Acompanhamento instancia "Aluno" como atributo.
     
   RISCOS PEDAGOGICOS:
   
