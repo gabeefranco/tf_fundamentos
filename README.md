@@ -37,11 +37,6 @@ INSTRUCOES PARA USUARIO:
 
 ---
 
-Risco pedagogico:
-	o risco pedagogico é calculado por uma media aritimetica emtre 4 razões diferentes: 
-	RazaoIa, sendo essa a razão das atividades feitas com IA e as atividades entregues; 
-	RazãoComAjuda, é a razão entre
-
 COMO O PROGRAMA FUNCIONA:
 	O sistema é constituido por 8 classes: Pessoa, Aluno, Bolsista, Acompanhamento, Dados, Erro, Gerenciador e Menu. O método main se localiza na classe Menu e, quando chamado, passa a receber informações do usuário por meio de um loop while e um switch case.
 	Apos o input do usuario um dos metodos sera "rodado".
@@ -63,7 +58,10 @@ COMO O PROGRAMA FUNCIONA:
 		
 		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
     
-  
+  Risco pedagogico:
+	o risco pedagogico é calculado por uma media aritimetica emtre 4 razões diferentes: 
+	RazaoIa, sendo essa a razão das atividades feitas com IA e as atividades entregues; 
+	RazãoComAjuda, é a razão entre
 ---
   
 VERSION CONTROL:
@@ -71,15 +69,29 @@ VERSION CONTROL:
     Feito pelos 3 membros juntos.
     Cada um fez uma parte inicial do projeto.
 
-    
+2.0
+	Gabriel fez a classe Gerenciador.
+	Caio fez a classe Dados.
+	Arthur fez a classe Menu.
+
+3.0
+	Caio fez a classe Erros.
+	Diversas correções foram feitas.
+
+4.0
+	Revisão final e consenso de finalização do trabalho por todos os membros.
+
 ---    
     
 REFERENCIAS:
-    Nao utilizamos referencias durante a producao do trabalho.
+    Não utilizamos referencias durante a produção do trabalho.
+	
     
 RELATORIO:
-    Os questionamentos que surgiram durante a programacao foram discutidas por todos entre o grupo.
-    Conceitos apredidos durante o andamento de todo o semestre foram muito reforcados.
+    Conceitos apredidos durante o andamento de todo o semestre foram muito reforcados, principalmente sobre vetores de objetos e como compor uma classe com outra.
+	Não foram utilizadas nenhuma ferramenta de IA durante a produção do trabalho.
+	Não tivemos nenhuma dificuldade grande, e os questionamentos que surgiram durante a programação foram discutidas por todos entre o grupo, chegando em um consenso e aplicando nossas ideias.
+	
 
 
 
