@@ -33,7 +33,7 @@ INSTRUCOES PARA USUARIO:
          16 - Encerrar o programa
     
     Ao inserir qual das 16 ações possiveis o usuario deseja realizar, os metodos apropriados são chamados, das classes Acompanhamento ou Aluno. Depois, o programa retornara para o menu, ate o usuario escolher sair.
-    Voce pode criar quantos Alunos, Bolsistas, Listas, etc, que voce dsejar sem precisar reiniciar o programa.
+    Voce pode criar quantos Alunos, Bolsistas, Listas, etc, que voce desejar sem precisar reiniciar o programa.
 
 ---
 
@@ -49,13 +49,13 @@ COMO O PROGRAMA FUNCIONA:
 		
 		Bolsista: É a classe base da criação de um bolsista, contendo os atributos Aluno, projeto e orientador.
 		
-		Acompanhamento: É a classe onde os metodos do cálculo de risco pedagógico estão, contendo também um método de "get.label" que retorna a classificação dos alunos entre os riscos de ALTO, MODERADO ou BAIXO.
+		Acompanhamento: É a classe onde os metodos do cálculo de risco pedagógico estão, contendo também um método de ".getRiscoLabel" que retorna a classificação dos alunos entre os riscos de ALTO, MODERADO ou BAIXO.
 		
-		Dados: É a classe onde occore as intancieções de vetores de objetos, também contendo alguns dos métodos
+		Dados: É a classe onde occorem as intanciações de vetores de objetos, também contendo alguns dos métodos
 		
 		Gerenciador: A classe contendo alguns dos métodos principais, também servindo de intermediário entre as classes Dados e Menu.
 		
-		Erro: Classe contendo mensagens erros diversos que podem ocorrer durante a execução do programa.
+		Erro: Classe contendo mensagens de erros diversos que podem ocorrer durante a execução do programa.
 		
 		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
 
@@ -68,7 +68,7 @@ COMO O PROGRAMA FUNCIONA:
     
   RISCOS PEDAGOGICOS:
   
-	O método escolhido de como definir o risco pedagógico foi de calcular a média aritmética entre as porcentagens de atividades feitas com IA, não explicadas, feitas com ajuda, e que utilizam funcionalidades não estudadas; sendo os dados utilizados para os cálculos, originados da classe Acompanhamento, que possui uma instancia da classe Aluno e várias variáveis que representam os diferentes tipos de atividades entregues. 
+	O método escolhido de como definir o risco pedagógico foi de calcular a média aritmética entre as porcentagens de atividades feitas com IA, não explicadas, feitas com ajuda, e que utilizam funcionalidades não estudadas; sendo os dados utilizados para os cálculos originados da classe Acompanhamento, que possui uma instancia da classe Aluno e várias variáveis que representam os diferentes tipos de atividades entregues. 
 
 ---
   
