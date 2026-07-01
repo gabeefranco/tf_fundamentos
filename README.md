@@ -11,9 +11,9 @@ COMO COMECAR O PROJETO: Inicialize o projeto clicando com o botao direito na cla
 AUTORES: Caio Persch Espindola (26102478), Gabriel Franco (26102988), Arthur Dietrich de Morais (26106328) 
 
 ---
-OK--
+
 INSTRUCOES PARA USUARIO:
-    Esscolha uma opcao do menu digitando o numero correspondente:
+    Esscolha uma opção do menu digitando o numero correspondente:
 	
          1 - Cadastrar um aluno
          2 - Cadastrar um bolsista
@@ -37,19 +37,24 @@ INSTRUCOES PARA USUARIO:
 
 ---
 
+Risco pedagogico:
+	o risco pedagogico é calculado por uma media aritimetica emtre 4 razões diferentes: 
+	RazaoIa, sendo essa a razão das atividades feitas com IA e as atividades entregues; 
+	RazãoComAjuda, é a razão entre
+
 COMO O PROGRAMA FUNCIONA:
 	O sistema é constituido por 8 classes: Pessoa, Aluno, Bolsista, Acompanhamento, Dados, Erro, Gerenciador e Menu. O método main se localiza na classe Menu e, quando chamado, passa a receber informações do usuário por meio de um loop while e um switch case.
 	Apos o input do usuario um dos metodos sera "rodado".
 	
     Explicacao das classes:
-		Pessoa:
-		Aluno:
-		Bolsista:
-		Acompanhamento:
-		Dados:
-		Gerenciador:
-		Erro:
-		Menu:
+		Pessoa: É apenas uma classe básica de pessoa, contendo os atributos nome, idade e local de nascimento.
+		Aluno: É a classe base da criação de um aluno, contendo os atributos Pessoa, curso, matricula, semestre, ano e bolsista.
+		Bolsista: É a classe base da criação de um bolsista, contendo os atributos Aluno, projeto e orientador.
+		Acompanhamento: É a classe onde os metodos do cálculo de risco pedagógico estão, contendo também um método de "label" para classificar os alunos entre os riscos de ALTO, MODERADO ou BAIXO.
+		Dados: É a classe onde occore as intancieções de vetores de objetos, também contendo alguns dos métodos
+		Gerenciador: A classe contendo alguns dos métodos principais, também servindo de intermediário entre as classes Dados e Menu.
+		Erro: Classe contendo mensagens erros diversos que podem ocorrer durante a execução do programa.
+		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
     
   
 ---
