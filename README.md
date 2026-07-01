@@ -48,12 +48,19 @@ COMO O PROGRAMA FUNCIONA:
 	
     Explicacao das classes:
 		Pessoa: É apenas uma classe básica de pessoa, contendo os atributos nome, idade e local de nascimento.
+		
 		Aluno: É a classe base da criação de um aluno, contendo os atributos Pessoa, curso, matricula, semestre, ano e bolsista.
+		
 		Bolsista: É a classe base da criação de um bolsista, contendo os atributos Aluno, projeto e orientador.
+		
 		Acompanhamento: É a classe onde os metodos do cálculo de risco pedagógico estão, contendo também um método de "label" para classificar os alunos entre os riscos de ALTO, MODERADO ou BAIXO.
+		
 		Dados: É a classe onde occore as intancieções de vetores de objetos, também contendo alguns dos métodos
+		
 		Gerenciador: A classe contendo alguns dos métodos principais, também servindo de intermediário entre as classes Dados e Menu.
+		
 		Erro: Classe contendo mensagens erros diversos que podem ocorrer durante a execução do programa.
+		
 		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
     
   
