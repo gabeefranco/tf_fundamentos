@@ -59,9 +59,8 @@ COMO O PROGRAMA FUNCIONA:
 		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
     
   Risco pedagogico:
-	o risco pedagogico é calculado por uma media aritimetica emtre 4 razões diferentes: 
-	RazaoIa, sendo essa a razão das atividades feitas com IA e as atividades entregues; 
-	RazãoComAjuda, é a razão entre
+	O método escolhido de como definir o risco pedagógico foi de calcular a média aritmética entre as porcentagens de atividades feitas com IA, não explicadas, feitas com ajuda, e que utilizam funcionalidades não estudadas; sendo os dados utilizados para os cálculos, originados da classe Acompanhamento, que possui uma instancia da classe Aluno e várias variáveis que representam os diferentes tipos de atividades entregues. 
+
 ---
   
 VERSION CONTROL:
@@ -88,8 +87,11 @@ REFERENCIAS:
 	
     
 RELATORIO:
+
     Conceitos apredidos durante o andamento de todo o semestre foram muito reforcados, principalmente sobre vetores de objetos e como compor uma classe com outra.
+	
 	Não foram utilizadas nenhuma ferramenta de IA durante a produção do trabalho.
+	
 	Não tivemos nenhuma dificuldade grande, e os questionamentos que surgiram durante a programação foram discutidas por todos entre o grupo, chegando em um consenso e aplicando nossas ideias.
 	
 
