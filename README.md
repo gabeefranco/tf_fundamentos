@@ -4,7 +4,7 @@
 
 TITULO DO PROJETO: TF
 
-PROPOSITO DO PROJETO: A partir da escolha do usuario, o programa executa o metodo respectivo da escolha, com o projeto sendo um conjunto de metodos que(CONTINUAR)
+PROPOSITO DO PROJETO: A partir da escolha do usuario, o programa executa o metodo respectivo da escolha, com o projeto sendo um conjunto de metodos que conversam entre si, fundalmentalmente passando pela classe Gerenciador e sendo executados no Menu, esse sendo onde o método main se encontra.
 
 COMO COMECAR O PROJETO: Inicialize o projeto clicando com o botao direito na classe Menu e selecionando o metodo main.
 
@@ -29,7 +29,7 @@ INSTRUCOES PARA USUARIO:
          12 - Calculo do risco pedagogico
          13 - Relatorio geral do risco pedagogico
          14 - Mostrar alunos em alto risco
-         15 - (Inovacao)
+         15 - Ranking
          16 - Encerrar o programa
     
     Ao inserir qual das 16 ações possiveis o usuario deseja realizar, os metodos apropriados são chamados, das classes Acompanhamento ou Aluno. Depois, o programa retornara para o menu, ate o usuario escolher sair.
@@ -38,10 +38,18 @@ INSTRUCOES PARA USUARIO:
 ---
 
 COMO O PROGRAMA FUNCIONA:
-	O sistema é constituido por 5 classes: Pessoa, Aluno, Bolsista, Acompanhamento e Menu. O método main se localiza na classe Menu e, quando chamado, passa a receber informações do usuário por meio de um loop while e um switch case.
+	O sistema é constituido por 8 classes: Pessoa, Aluno, Bolsista, Acompanhamento, Dados, Erro, Gerenciador e Menu. O método main se localiza na classe Menu e, quando chamado, passa a receber informações do usuário por meio de um loop while e um switch case.
 	Apos o input do usuario um dos metodos sera "rodado".
 	
-    Explicacao dos metodos:
+    Explicacao das classes:
+		Pessoa:
+		Aluno:
+		Bolsista:
+		Acompanhamento:
+		Dados:
+		Gerenciador:
+		Erro:
+		Menu:
     
   
 ---
