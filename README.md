@@ -38,6 +38,7 @@ INSTRUCOES PARA USUARIO:
 ---
 
 COMO O PROGRAMA FUNCIONA:
+
 	O sistema é constituido por 8 classes: Pessoa, Aluno, Bolsista, Acompanhamento, Dados, Erro, Gerenciador e Menu. O método main se localiza na classe Menu e, quando chamado, passa a receber informações do usuário por meio de um loop while e um switch case.
 	Apos o input do usuario um dos metodos sera "rodado".
 	
@@ -58,12 +59,14 @@ COMO O PROGRAMA FUNCIONA:
 		
 		Menu: A classe que contem o menu de seleção interativo com todos os métodos, também sendo a classe que tem o método main.
     
-  Risco pedagogico:
+  RISCOS PEDAGOGICOS:
+  
 	O método escolhido de como definir o risco pedagógico foi de calcular a média aritmética entre as porcentagens de atividades feitas com IA, não explicadas, feitas com ajuda, e que utilizam funcionalidades não estudadas; sendo os dados utilizados para os cálculos, originados da classe Acompanhamento, que possui uma instancia da classe Aluno e várias variáveis que representam os diferentes tipos de atividades entregues. 
 
 ---
   
 VERSION CONTROL:
+
 1.0
     Feito pelos 3 membros juntos.
     Cada um fez uma parte inicial do projeto.
@@ -83,6 +86,7 @@ VERSION CONTROL:
 ---    
     
 REFERENCIAS:
+
     Não utilizamos referencias durante a produção do trabalho.
 	
     
